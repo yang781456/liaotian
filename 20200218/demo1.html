@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <ul>
+            <li v-for="item in list"><a :href="'view?id=' + item.id">{{item.title}}</a><span>{{item.date}}</span></li>
+        </ul>
+    </div>
+
+
+    <script>
+        /**
+         *  写死
+         *  1、数据 -- 数据库 select   $list    mvc   视图  模板引擎 foreach
+         *  {foreach $list as $item}
+         * <li><a href="view?id={$item.id}">{$item.title}</a><span>{$item.date}</span></li>
+         * {/foreach}
+         *
+         *  完全前后端分离  php 只提供数据接口  请求返回json
+         * 2、前端请求接口地址  成功  json  使用dom（原生 document.appendChild、jquery库简化dom操作 ） 改变html上结构
+         *   for (var i in json) {
+         *   $('#app  ul').append('<li><a href="view?id=">'+json[i]['title']+'</a></li>')
+         * }
+         *
+         * 3、前端请求接口地址  成功  json数据  vue 自动进行页面上的数据更新
+         * //  仅仅做好数据的维护就可以了
+         *
+         *
+         */
+
+        var json = [
+            {
+                "id" :1,
+                "title" : "新闻标题1",
+                "date" :"2019-02-18"
+            },
+            {
+                "id" :2,
+                "title" : "新闻标题2",
+                "date" :"2019-02-17"
+            },
+            {
+                "id" :3,
+                "title" : "新闻标题3",
+                "date" :"2019-02-16"
+            }
+        ]
+
+        var vm = new Vue({
+            el : "#app",
+            data : {
+                list : json
+            }
+        })
+
+
+        var json1 = [
+            {
+                "id" :4,
+                "title" : "新闻标题4",
+                "date" :"2019-02-18"
+            },
+            {
+                "id" :5,
+                "title" : "新闻标题5",
+                "date" :"2019-02-17"
+            },
+            {
+                "id" :6,
+                "title" : "新闻标题6",
+                "date" :"2019-02-16"
+            }
+        ]
+
+        // 获取到另外一页的数据
+        setTimeout(function(){
+            // 1 拿数据 2 对list 属性进行赋值
+            vm.$data.list = json1;// 仅仅将 data 中的list 数据 更新
+        }, 5000)
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>

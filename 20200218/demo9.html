@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul v-if="arr.length > 0">
+            <li v-for="item in arr">
+                {{item.id>=2 ? 'a' : "b"}}
+                {{item.title+'aa'}}
+            </li>
+
+        </ul>
+    </div>
+    <script>
+
+        var vm  = new Vue({
+            el : '#app',
+            data: {
+                arr : [
+                    {
+                        "id" :1,
+                        "title" : "新闻标题1",
+                        "date" :"2019-02-18"
+                    },
+                    {
+                        "id" :2,
+                        "title" : "新闻标题2",
+                        "date" :"2019-02-17"
+                    },
+                    {
+                        "id" :3,
+                        "title" : "新闻标题3",
+                        "date" :"2019-02-16"
+                    }
+                ]
+            }
+        })
+    </script>
+
+
+</body>
+</html>

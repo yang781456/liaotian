@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+   <div @click="test()">{{message}}
+        <div @click.stop.once="xi">xi</div>
+   </div>
+</div>
+
+
+<script>
+    var vm  = new Vue({
+        el : '#app',
+        data: {
+            message : "abc"
+        },
+        methods : {
+            test : function () {
+                console.log('inner test')
+            },
+            xi:function () {
+                console.log('xi')
+            }
+        }
+    })
+
+   function test() {
+       console.log('outer test')
+   }
+
+</script>
+
+</body>
+</html>

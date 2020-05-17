@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+    姓名：<input type="text" v-model="addList.name">年龄：<input type="text" v-model="addList.age"> 性别：<input type="text" v-model="addList.sex"><button type="submit" @click="add">提交</button>
+
+    <table border="1" width="600px">
+        <tr>
+            <th>序号</th><th>姓名</th><th>年龄</th><th>性别</th><th>操作</th>
+        </tr>
+        <tr v-for="item,index in list">
+            <td>{{index+1}}</td><td>{{item.name}}</td><td>{{item.age}}</td><td>{{item.sex}}</td><td><span style="color: blue" @click="del(index)">删除</span><span style="color: red" @click="edit(index,item)">修改</span></td>
+        </tr>
+    </table>
+    <div v-if="editv">姓名：<input type="text" v-model="editList.name">年龄：<input type="text" v-model="editList.age"> 性别：<input type="text" v-model="editList.sex"><button type="submit" @click="up">提交</button></div>
+</div>
+
+<script>
+
+    var vm = new Vue({
+        el : '#app',
+        data : {
+            // 存储用户数据
+            addList:{},
+            editv:false,
+            editid:0,
+            editList:{},
+            list : [
+                {
+                    name :"张三",
+                    age : 18,
+                    sex:"男"
+                },
+                {
+                    name :"李四",
+                    age : 18,
+                    sex:"男"
+                }
+            ]
+
+        },
+        methods : {
+            add: function () {
+                this.list.push({
+                    name:this.addList.name,
+                    age:this.addList.age,
+                    sex:this.addList.sex
+                })
+            },
+            del:function (id) {
+                this.list.splice(id, 1);
+            },
+            edit:function (id,item) {
+                this.editList={
+                    name:item.name,
+                    age:item.age,
+                    sex:item.sex
+                }
+                this.editv=true,
+                    this.editid=id
+            },
+            up:function () {
+                let _this= this
+                for (var i=0;i<=this.list.length;i++){
+                    if(i==this.editid){
+                        this.list[i]={
+                            name:_this.editList.name,
+                            age:_this.editList.age,
+                            sex:_this.editList.sex
+                        }
+                    }
+                }
+                this.editv=false
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

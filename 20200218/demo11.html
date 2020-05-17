@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    {{elsemsg}}
+    <h2>{{message}}</h2>
+</div>
+
+
+<script>
+    var vm  = new Vue({
+        el : '#app',
+        data: {
+            message : "msg"
+        },
+        computed : {
+            elsemsg : function () {
+                return 'showelse'
+            }
+        }
+    })
+
+</script>
+
+</body>
+</html>

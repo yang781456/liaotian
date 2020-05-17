@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{name}}</h2>
+        年龄：{{age}}
+    </div>
+
+
+    <script>
+        var vm  = new Vue({
+            el : '#app',
+            data: {
+                name:'',
+                age:0
+            },
+            methods: {
+                a : function (i) {
+                    return i+6
+                }
+
+
+            },
+            created : function () {
+                // 发送一个ajax  获取到数据
+                this.$data.name = '张三'
+                this.age = this.a(6)
+
+
+            }
+        })
+
+    </script>
+</body>
+</html>

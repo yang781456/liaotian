@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <h2>{{message | test}}</h2>
+</div>
+
+
+<script>
+    // 进一步处理值  格式化输出
+    Vue.filter('test', function (v) {
+        if (v.length >= 5) {
+            return v.toUpperCase()
+        } else {
+            return v.toLowerCase()
+        }
+    })
+    var vm  = new Vue({
+        el : '#app',
+        data: {
+            message : "abcsdf"// 如果 5 大写
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

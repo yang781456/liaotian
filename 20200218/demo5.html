@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <div v-if="money >= 100">money >= 100</div>
+    <div v-else-if="money >= 50">money >= 50</div>
+    <div v-else-if="money >= 20">money >= 20</div>
+    <div v-else>money < 20</div>
+
+
+    <div v-show="false">show</div>
+</div>
+
+
+<script>
+    var vm  = new Vue({
+        el : '#app',
+        data: {
+            message : "abc",
+            money : 100
+        }
+    })
+
+    setTimeout(function () {
+        vm.$data.money = 56
+    },6000)
+    setTimeout(function () {
+        vm.$data.money = 18
+    },12000)
+
+</script>
+
+</body>
+</html>

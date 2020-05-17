@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h2>{{message}}</h2>
+        <input type="text" v-model="message">
+    </div>
+
+
+    <script>
+        var vm  = new Vue({
+            el : '#app',
+            data: {
+                message : "abc"
+            }
+        })
+
+        setTimeout(function () {
+           console.log(vm.$data.message)
+        }, 10000)
+
+    </script>
+
+</body>
+</html>

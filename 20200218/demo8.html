@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+        .green{
+            color: green;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    {{aaa}}
+    <input type="checkbox" :checked="aaa[0]" v-model="aaa[0]">
+    <input type="checkbox" :checked="aaa[1]" v-model="aaa[1]">
+    <input type="checkbox" :checked="aaa[2]" v-model="aaa[2]">
+    <input type="checkbox" :checked="aaa[3]" v-model="aaa[3]">
+    <input type="checkbox" :checked="aaa[4]" v-model="aaa[4]">
+    <button @click="all">全选</button>
+    <button @click="fan">反选</button>
+</div>
+
+
+<script>
+    var vm  = new Vue({
+        el : '#app',
+        data: {
+            aaa : [false, true, false,false, true]
+        },
+        methods : {
+            all:function () {
+                // 视图不更新的问题
+                //this.aaa = 'newaaa'// 普通类型 ok
+                //this.aaa = [3,2,1]// 数组 完全重新赋值  ok
+                //this.aaa[0] = 11// 数组  改变部分值  no
+                //this.aaa[0] = {"a": "aaa"} no
+                //this.aaa.pop()// ok
+                //this.aaa[3] = 33;// no
+                //this.aaa.push(33)// ok  数组这些方法操作 push pop  shift  unshift  reverse sort splice 都会成功
+                //this.aaa['a']  = 'newaa' 对象 属性存在 // ok
+                //this.aaa['c'] = 'cc' //对象 属性不存在  no
+
+                //this.$set(this.aaa, 'c', 'cc');// ok
+                //this.$set(this.aaa, 0, 11);// ok
+
+                for (var i in this.aaa) {
+                    //this.aaa[i] = true;
+                    this.$set(this.aaa, i, true)
+                }
+            },
+            fan:function () {
+                console.log(this.aaa)
+                for (var i in this.aaa) {
+                    //this.aaa[i] = true;
+                    this.$set(this.aaa, i, !this.aaa[i])
+                }
+            }
+        }
+    })
+
+    // setTimeout(function () {
+    //    vm.$data.ck = [true, true, true,true, true]
+    // }, 2000)
+</script>
+
+</body>
+</html>

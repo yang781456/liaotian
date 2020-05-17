@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    {{message}}
+    <div v-red>div</div>
+    <h2 v-red>h2</h2>
+</div>
+
+<div id="newapp">
+    {{message}}
+    <div v-red>div2</div>
+</div>
+
+<script>
+    // 所有vue的实例都可以调用的指令
+    Vue.directive('red', function (el) {
+        el.style.color='red'
+        el.innerHTML = 'aaa'
+    })
+
+    var vm  = new Vue({
+        el : '#app',
+        data: {
+            message : "abc"
+        },
+        // 只有当前挂载点  #app下才可以使用这里定义的指令 而其他vue实例不能使用
+        // directives : {
+        //     red : function (el) {
+        //         el.style.color='red'
+        //     }
+        // }
+    })
+
+    var vm1 = new Vue({
+        el : '#newapp',
+        data : {
+            message : 'cba'
+        }
+    })
+
+</script>
+
+</body>
+</html>
